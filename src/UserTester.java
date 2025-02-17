@@ -2,7 +2,85 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTester {
+public class User {
+    private int rank = -8;
+    private int progress = 0;
 
+    public int getRank() {
+        return rank;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+    public String toString() {
+        return "User{rank=" +rank+", progress="+progress+'}';
+    }
+    public void incProgress(int activityrank){
+    if(activityrank == rank){
+        progress += 3;
+    }
+
+    if(activityrank > rank && (activityrank > 0 && rank < 0 )){
+
+        int d = activityrank - rank - 1;
+        progress += 10*d*d;
+    }
+
+        if(activityrank > rank && !(activityrank > 0 && rank < 0 )){
+
+            int d = activityrank - rank;
+            progress += 10*d*d;
+        }
+
+    if(activityrank < rank && (activityrank < 0 && rank > 0 )){
+        int b = rank - activityrank - 1;
+        if(b < 2){
+            progress += 1;
+        }
+    }
+        if(activityrank < rank && !(activityrank < 0 && rank > 0 )){
+            int b = rank - activityrank;
+            if(b < 2){
+                progress += 1;
+            }
+        }
+
+
+        while(progress >= 100){
+            rank++;
+            if(rank == 0){
+                rank++;
+            }
+            progress = progress - 100;
+        }
+
+        if(rank > 8){
+            rank = 8;
+        }
+        if(rank == 0){
+            rank = 1;
+        }
+        if(rank < -8){
+            rank = -8;
+        }
+
+
+
+
+
+
+
+
+    if(activityrank < - 8 || activityrank > 8 || activityrank == 0){
+        throw new IllegalArgumentException("The rank of an activity cannot be less than 8, 0, or greater than 8!");
+    }
+
+
+    }
+
+
+}
     private User user;
 
     public void setUp() {
